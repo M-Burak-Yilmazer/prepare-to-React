@@ -88,8 +88,8 @@ let [bir1, ...kalanlar1] = sayilar1;
 
  //Yayma operatörü, bir obje veya bir diziyi alıp, içindeki tüm elemanları tek tek döndürür. React projelerinde en önemli kullanım amaçlarından bir tanesi, immutability (değişmezlik) kuralına riayet edebilmek içindir. Örneklerle açıklayalım.
 
- let personInfo = { isim: "Mehmet", yas: 35, sehir: "İstanbul" };
- personInfo.sehir = "Ankara";
+//  let personInfo = { isim: "Mehmet", yas: 35, sehir: "İstanbul" };
+//  personInfo.sehir = "Ankara";
  console.log(personInfo);
 
  //Her şey yolunda görünüyor. Kullanıcının şehir bilgisini değiştirmek istedik ve değiştirdik. Ancak React ekosisteminde, state üzerinde yapılan değişiklikler state objesini mutate etmeden (doğrudan değiştirmeden) yapılmalıdır.
@@ -97,3 +97,84 @@ let [bir1, ...kalanlar1] = sayilar1;
 //Yukarıdaki örnekte, `kullanici` objesinin hafızadaki (RAM) yeri değişmedi. Sadece objenin bir elemanı güncellendi. React bu şekilde yapılan değişiklikleri algılayamıyor. State üzerinde yapılan bir değişikliğin algılanamaması demek, rendering (ekrana yazdırma) işleminin tetiklenememesi demek. Bu da değişikliğin tarayıcıda yansıtılamaması anlamına geliyor.
 
 // Oysaki bizim yapmamız gereken şey, `sehir` değeri güncellenmiş yeni bir obje oluşturmak ve onu mevcut `kullanici` objesi ile yer değiştirmek. Bu durumda güncellemeyi şöyle yapabiliriz:
+ let personInfo = { isim: "Mehmet", yas: 35, sehir: "İstanbul" };
+personInfo = { ...personInfo, sehir: "Ankara" };
+
+
+// INITIAL_STATE = {
+//   yukleniyor: false,
+//   hataMesaji: "",
+//   arabalar: ["Mercedes", "BMW", "Audi"],
+// };
+
+// const reducer = (state = INITIAL_STATE, action) => {
+//   switch (action.type) {
+//     case "ARABA_EKLE":
+//       return { ...state, arabalar: [...state.arabalar, action.payload] };
+//     default:
+//       return state;
+//   }
+// };
+
+//* ESModules (ES modülleri)
+
+//Modül sistemi sayesinde belirli kod blokları yeniden kullanmak ve organizasyon amaçlı import/export (içe/dışa aktarma) edilebilir. İki adet içe/dışa aktarma yöntemi vardır: named (isimli) ve default (varsayılan)
+
+// export let isim = "Mehmet"; // oluşturuldu ve dışa aktarıldı
+// export const kullanici = { isim, yas: 35 }; // oluşturuldu ve dışa aktarıldı
+// export function merhaba(isim) {
+//   // oluşturuldu ve dışa aktarıldı
+//   return `Merhaba, ${isim}`;
+// }
+
+// let isim = "Mehmet";
+// const kullanici = { isim, yas: 35 };
+// function merhaba(isim) {
+//   return `Merhaba, ${isim}`;
+// }
+
+// export { isim, kullanici, merhaba };
+
+import { isim, kullanici, merhaba } from "./dosyaadi.js";
+
+import {
+  isim as name,
+  kullanici as user,
+  merhaba as hello,
+} from "./dosyaadi.js";
+
+//Default Exports & Imports (varsayılan içe/dışa aktarmalar)/
+
+export default function merhaba(isim) {
+  return `Merhaba, ${isim}!`}
+
+  export { merhaba as default, isim, kullanici }
+
+  import merhaba from "./merhaba.js";
+
+  import { default as merhaba, isim, kullanici } from "./dosyaadi.js";
+
+  //* ## Ternary Conditional Operators (üç değişkenli koşul operatörleri)
+`koşul ? doğruysa : yanlışsa`
+
+yanlışlar
+null
+     NaN
+     0
+     "" (empty string)
+     undefined
+
+     kopruAcikMi
+  ? "Anadolu yakasina gecebilirsiniz"
+  : "Anadolu yakasina gecisler iptal";
+
+
+
+  const urunler = [
+  { id: 1, name: "Kalem", fiyat: 5 },
+  { id: 2, name: "Defter", fiyat: 10 },
+  { id: 3, name: "Silgi", fiyat: 2 },
+  { id: 4, name: "Kalemtraş", fiyat: 7 },
+]
+
+find

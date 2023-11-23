@@ -1,58 +1,118 @@
 //!Template literals(sablon dizileri)
 
-const isim ="Mehmet"
 
-const mesaj = `Merhaba, ${isim}`
-
-console.log(mesaj)
-
-const birim_fiyat =100;
-const adet= 3 ;
- const para_birimi ="TL"
-
- const toplam_fiyat = `Toplam:  ${birim_fiyat * adet} ${para_birimi}`
- console.log(toplam_fiyat) ; 
 
  //todo: Shorthand Property Names 
- //objeler key value seklinde anahtar olarak tanımlanır eğerki obje de anahtar direk tanımlanır ise key value belirtmemiz gerekmez; bu durumda değişkenin direk objeye girilmesi değiskeni key, değerini ise value olarak kabul eder. 
 
- const name = "John"
- const age = 30;
- const kullanıcı = {name, age}
- console.log(kullanıcı)
 
- //! React ta nasıl
+ //*Arrow Functions
 
-//  function Sayac( {baslangıcDegeri, adim })
-// {
-// const [sayac, setSayac] = useCounter({ baslangıcDegeri, adim });
-// return <button onClick={setSayac}> {sayac}</button>
-// }
-  /// 
 
   //* object, array desctructing
 
-  const kullanici   = { isim: "Mehmet", yas:35}
 
-  const { isim: isim1, yas } = kullanici
-  console.log(isim1, yas)
-
+  
+  //*Parameter Defaults
 
 
-  //rest/spread operatçrü 
-  // toparlama kısmına yukarıda değindik 
+  //*rest/spread operators
 
-  let personList={
-    name: "Mehmet",
-    yas:33, sehir:"Ankara"
-  }
-// personList.sehir ="istanbul"
-  console.log(personList)
 
-  personList = {
-    ...personList,sehir:"kayseri"
-  }
-  console.log(personList)
-  INITIAL_STATE ={
-    
-  }
+  //*ESModules (ES modülleri)
+  //?Named Exports&Imports
+
+  //?Default Exports&Imports
+
+
+ //*Ternary Conditional Functions
+
+ //*Array Methods
+
+ const products = [
+   { id: 1, name: "Kalem", fiyat: 5 },
+   { id: 2, name: "Defter", fiyat: 10 },
+   { id: 3, name: "Silgi", fiyat: 2 },
+   { id: 4, name: "Kalemtraş", fiyat: 7 },
+ ];
+
+ //*promise 
+
+
+
+ //*fetch
+ // CoinRanking API endpoint
+const apiUrl = 'https://api.coinranking.com/v2/coins';
+
+// API key (gerekiyorsa, kaydolduktan sonra alabilirsiniz)
+const apiKey = 'YOUR_API_KEY';
+
+// CoinRanking API'den veri çekmek için bir fonksiyon
+function getCoinData(coinId) {
+  // API'ye yapılan isteğin URL'sini oluştur
+  const url = `${apiUrl}/${coinId}?apiKey=${apiKey}`;
+
+  // Fetch API'sini kullanarak veriyi al
+  fetch(url)
+    .then(response => {
+      // HTTP başarılı bir şekilde cevap verdi mi?
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      // JSON formatındaki veriyi parse et
+      return response.json();
+    })
+    .then(data => {
+      // İstenen veriyi kullan
+      console.log('Coin Data:', data.data.coin);
+    })
+    .catch(error => {
+      // Hata durumunda konsola yazdır
+      console.error('Error fetching data:', error);
+    });
+}
+
+// Örnek: Bitcoin (BTC) için veri çekme
+const bitcoinId = 'bitcoin'; // CoinRanking API'de belirli bir kripto paranın ID'si
+getCoinData(bitcoinId);
+
+
+
+//* Ajax 
+// CoinRanking API endpoint
+// const apiUrl = 'https://api.coinranking.com/v2/coins';
+
+// // API key (gerekiyorsa, kaydolduktan sonra alabilirsiniz)
+// const apiKey = 'YOUR_API_KEY';
+
+// // CoinRanking API'den veri çekmek için bir fonksiyon
+// function getCoinData(coinId) {
+//   // API'ye yapılan isteğin URL'sini oluştur
+//   const url = `${apiUrl}/${coinId}?apiKey=${apiKey}`;
+
+//   // XMLHttpRequest nesnesi oluştur
+//   const xhr = new XMLHttpRequest();
+
+//   // GET isteği yap
+//   xhr.open('GET', url, true);
+
+//   // İsteği gönder
+//   xhr.send();
+
+//   // İsteğin tamamlanmasını dinle
+//   xhr.onreadystatechange = function () {
+//     // İsteğin durumu başarılı mı kontrol et
+//     if (xhr.readyState === 4 && xhr.status === 200) {
+//       // JSON formatındaki veriyi parse et
+//       const data = JSON.parse(xhr.responseText);
+//       // İstenen veriyi kullan
+//       console.log('Coin Data:', data.data.coin);
+//     } else if (xhr.readyState === 4) {
+//       // Hata durumunda konsola yazdır
+//       console.error('Error fetching data. Status:', xhr.status);
+//     }
+//   };
+// }
+
+// // Örnek: Bitcoin (BTC) için veri çekme
+// const bitcoinId = 'bitcoin'; // CoinRanking API'de belirli bir kripto paranın ID'si
+// getCoinData(bitcoinId);
